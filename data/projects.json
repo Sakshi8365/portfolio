@@ -1,0 +1,46 @@
+[
+  {
+    "title": "NeRF-Neural-Radiance-Fields-for-3D-Scene-Reconstruction",
+    "description": "Minimal PyTorch NeRF trainer that can overfit a tiny synthetic scene quickly on CPU.",
+    "tech": ["REST API (Flask)", "Three.js", "Docker", "Python", "PyTorch"],
+    "live": "#projects",
+    "source": "https://github.com/Sakshi8365/NeRF-Neural-Radiance-Fields-for-3D-Scene-Reconstruction"
+  },
+  {
+    "title": " StreamForge",
+    "description": "A Real Time Crypto Data Pipeline",
+    "tech": ["Python", "Kafka/Redpanda", "Docker", "PostgreSQL"],
+    "live": "https://example.com/task-tracker",
+    "source": "https://github.com/Sakshi8365/StreamForge"
+  },
+  {
+    "title": "VisionX",
+    "description": "A Real-Time Object Detection App",
+    "tech": ["Python", "PyTorch", "YOLOv8", "OpenCV", "CLIP", "NumPy"],
+    "live": "https://example.com/api-explorer",
+    "source": "https://github.com/Sakshi8365/VisionX"
+  },
+  {
+    "title": "Toxicity-Detection-Discord-Bot",
+    "description": "Real-time Discord toxicity detection bot using ML/NLP with configurable thresholds and admin controls for fast, accurate moderation.",
+    "tech": ["Python", "Discord.py", "Scikit-learn", "TF-IDF", "Logistic Regression", "JSON Config"],
+    "live": "https://example.com/api-explorer",
+    "source": "https://github.com/Sakshi8365/Toxicity-Detection-Discord-Bot"
+  },
+  {
+    "title": "Proactive-Cloud-Monitoring-Dashboard",
+    "description": "Cloud cost and performance monitoring dashboard with CSV upload, analytics, and Dockerized full-stack setup (Next.js, FastAPI, TimescaleDB).",
+    "tech": ["Python", "FastAPI", "TimescaleDB", "Next.js (TypeScript)", "Docker", "Recharts"],
+    "live": "https://example.com/api-explorer",
+    "source": "https://github.com/Sakshi8365/Proactive-Cloud-Monitoring-Dashboard"
+  },
+   {
+    "title": "Data-Masker-Smart-Data-Redactor",
+    "description": "Data Masker is a fast, configurable CLI that detects and masks PII",
+    "tech": ["Python", "Pandas", "Click", "PyYAML", "Regex", "ipaddress"],
+    "live": "https://example.com/api-explorer",
+    "source": "https://github.com/Sakshi8365/Data-Masker-Smart-Data-Redactor"
+  }
+  
+
+]
