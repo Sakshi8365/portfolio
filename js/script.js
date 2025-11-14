@@ -543,4 +543,31 @@
       host.appendChild(frag);
     } catch (_) { }
   })();
+
+  // Global glimmer layer sparkles
+  (function initGlobalGlimmer() {
+    try {
+      const layer = document.querySelector('.bg-glimmer-layer');
+      if (!layer) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const total = reduce ? 70 : 140;
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < total; i++) {
+        const s = document.createElement('span');
+        const x = Math.random() * 100; // %
+        const y = Math.random() * 100; // %
+        s.style.left = x + '%';
+        s.style.top = y + '%';
+        s.style.animationDelay = (Math.random() * 10).toFixed(2) + 's';
+        s.style.animationDuration = (6 + Math.random() * 6).toFixed(2) + 's';
+        if (Math.random() < 0.10) { // occasional larger sparkle
+          s.style.width = '4px';
+          s.style.height = '4px';
+          s.style.boxShadow = '0 0 10px rgba(255,255,255,.8)';
+        }
+        frag.appendChild(s);
+      }
+      layer.appendChild(frag);
+    } catch (_) {}
+  })();
 })();
