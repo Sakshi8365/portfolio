@@ -95,7 +95,7 @@ html[data-theme="light"] body {
     background-position: -120% -120%, 0 0, 35px 55px, 70px 20px;
     mix-blend-mode: screen;
     animation: sparkleDrift 18s linear infinite;
-    opacity: .26;
+    opacity: .16;
   }
   html[data-theme="light"] body::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
@@ -112,7 +112,7 @@ html[data-theme="light"] body {
     background-position: -120% -120%, 0 0, 35px 55px, 70px 20px;
     mix-blend-mode: overlay;
     animation: sparkleDrift 22s linear infinite;
-    opacity: .20;
+    opacity: .12;
   }
   @keyframes sparkleDrift {
     to {
@@ -132,7 +132,7 @@ html[data-theme="light"] body {
         rgba(255,255,255,0.08) 52%,
         rgba(255,255,255,0.00) 60%);
     mix-blend-mode: screen;
-    opacity: var(--gloss-opacity, .44); transition: opacity .25s ease;
+    opacity: var(--gloss-opacity, .26); transition: opacity .25s ease;
     background-repeat: no-repeat;
   }
   html[data-theme="light"] body::after {
@@ -145,11 +145,11 @@ html[data-theme="light"] body {
         rgba(255,255,255,0.10) 45%,
         rgba(255,255,255,0.00) 55%);
     mix-blend-mode: overlay;
-    opacity: var(--gloss-opacity, .36); transition: opacity .25s ease;
+    opacity: var(--gloss-opacity, .20); transition: opacity .25s ease;
     background-repeat: no-repeat;
   }
   /* pulse via variable to allow JS control */
-  html.gloss-active { --gloss-opacity: .42; }
+  html.gloss-active { --gloss-opacity: .22; }
 }
 
 /* Shape variants for the cursor-following glow */
