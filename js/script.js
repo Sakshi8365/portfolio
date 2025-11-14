@@ -511,4 +511,36 @@
       });
     } catch (_) { /* ignore starfield failures */ }
   })();
+
+  // GLIMMER: inject sparkles into .glimmer-layer
+  (function initGlimmer() {
+    try {
+      const host = document.querySelector('.glimmer-layer');
+      if (!host) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const count = reduce ? 40 : 85;
+      const frag = document.createDocumentFragment();
+      const w = host.offsetWidth || host.parentElement.offsetWidth || window.innerWidth;
+      const h = host.offsetHeight || 220; // hero approximate height
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('span');
+        const x = Math.random() * 100; // percentage
+        const y = Math.random() * 100;
+        const delay = (Math.random() * 6).toFixed(2); // seconds
+        const dur = (4 + Math.random() * 4).toFixed(2);
+        s.style.left = x + '%';
+        s.style.top = y + '%';
+        s.style.animationDelay = delay + 's';
+        s.style.animationDuration = dur + 's';
+        // occasional larger sparkle
+        if (Math.random() < 0.12) {
+          s.style.width = '4px';
+          s.style.height = '4px';
+          s.style.boxShadow = '0 0 10px rgba(255,255,255,.75)';
+        }
+        frag.appendChild(s);
+      }
+      host.appendChild(frag);
+    } catch (_) { }
+  })();
 })();
