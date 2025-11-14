@@ -123,14 +123,7 @@ html[data-theme="light"] body {
   html[data-theme="dark"] body::after {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
-      radial-gradient(var(--gloss-size, 420px 280px) at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,255,255,0.18), rgba(255,255,255,0) 60%),
-      linear-gradient(120deg,
-        rgba(255,255,255,0.00) 15%,
-        rgba(255,255,255,0.06) 32%,
-        rgba(255,255,255,0.12) 37%,
-        rgba(255,255,255,0.00) 44%,
-        rgba(255,255,255,0.08) 52%,
-        rgba(255,255,255,0.00) 60%);
+      radial-gradient(var(--gloss-size, 520px 380px) at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,255,255,0.18), rgba(255,255,255,0) 70%);
     mix-blend-mode: soft-light;
     opacity: var(--gloss-opacity, .12); transition: opacity .25s ease;
     background-repeat: no-repeat;
@@ -138,12 +131,7 @@ html[data-theme="light"] body {
   html[data-theme="light"] body::after {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
-      radial-gradient(var(--gloss-size, 420px 280px) at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,255,255,0.28), rgba(255,255,255,0) 60%),
-      linear-gradient(120deg,
-        rgba(255,255,255,0.00) 18%,
-        rgba(255,255,255,0.20) 38%,
-        rgba(255,255,255,0.10) 45%,
-        rgba(255,255,255,0.00) 55%);
+      radial-gradient(var(--gloss-size, 520px 380px) at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,255,255,0.22), rgba(255,255,255,0) 70%);
     mix-blend-mode: overlay;
     opacity: var(--gloss-opacity, .10); transition: opacity .25s ease;
     background-repeat: no-repeat;
