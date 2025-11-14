@@ -1,4 +1,4 @@
-(function(){
+(function () {
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -53,7 +53,7 @@
   if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
 
   // Set default glow shape to a subtle 'aura'
-  try { if (!document.documentElement.hasAttribute('data-glow-shape')) { document.documentElement.setAttribute('data-glow-shape', 'aura'); } } catch(_) {}
+  try { if (!document.documentElement.hasAttribute('data-glow-shape')) { document.documentElement.setAttribute('data-glow-shape', 'aura'); } } catch (_) { }
 
   // Projects rendering
   async function loadProjects() {
@@ -80,14 +80,14 @@
   }
 
   function esc(s) {
-    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+    return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[m]));
   }
 
   function cardHTML(p) {
     const title = esc(p.title || 'Untitled');
     const desc = esc(p.description || '');
     const tech = Array.isArray(p.tech) ? p.tech : [];
-  const gh = p.source ? `<a class=\"btn-icon icon-link\" href=\"${esc(p.source)}\" target=\"_blank\" rel=\"noopener\" aria-label=\"GitHub repository: ${title}\" title=\"GitHub\"><svg class=\"icon\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 0 0-1.34-1.76c-1.1-.75.09-.74.09-.74a2.5 2.5 0 0 1 1.82 1.22 2.54 2.54 0 0 0 3.47 1 2.54 2.54 0 0 1 .76-1.6c-2.66-.3-5.46-1.33-5.46-5.9a4.63 4.63 0 0 1 1.23-3.22 4.3 4.3 0 0 1 .12-3.18s1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.28-1.55 3.28-1.23 3.28-1.23.44 1 .47 2.14.1 3.18a4.63 4.63 0 0 1 1.23 3.22c0 4.6-2.8 5.6-5.47 5.9a2.84 2.84 0 0 1 .81 2.2v3.27c0 .32.21.7.83.58A12 12 0 0 0 12 .5z\"/></svg></a>` : '';
+    const gh = p.source ? `<a class=\"btn-icon icon-link\" href=\"${esc(p.source)}\" target=\"_blank\" rel=\"noopener\" aria-label=\"GitHub repository: ${title}\" title=\"GitHub\"><svg class=\"icon\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 0 0-1.34-1.76c-1.1-.75.09-.74.09-.74a2.5 2.5 0 0 1 1.82 1.22 2.54 2.54 0 0 0 3.47 1 2.54 2.54 0 0 1 .76-1.6c-2.66-.3-5.46-1.33-5.46-5.9a4.63 4.63 0 0 1 1.23-3.22 4.3 4.3 0 0 1 .12-3.18s1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.28-1.55 3.28-1.23 3.28-1.23.44 1 .47 2.14.1 3.18a4.63 4.63 0 0 1 1.23 3.22c0 4.6-2.8 5.6-5.47 5.9a2.84 2.84 0 0 1 .81 2.2v3.27c0 .32.21.7.83.58A12 12 0 0 0 12 .5z\"/></svg></a>` : '';
 
     return `
       <article class="card project-card proj-reveal">
@@ -128,7 +128,7 @@
       } else {
         cards.forEach((el) => el.classList.add('in'));
       }
-    } catch (_) {}
+    } catch (_) { }
 
     // Subtle 3D tilt on hover (desktop, motion-allowed)
     try {
@@ -175,7 +175,7 @@
 
       grid.addEventListener('pointermove', onMove, { passive: true });
       grid.addEventListener('pointerleave', onLeave, { passive: true });
-    } catch (_) {}
+    } catch (_) { }
   }
 
   // Re-run effects after projects load by listening to DOM changes or call after rendering
@@ -224,7 +224,7 @@
   document.addEventListener('DOMContentLoaded', initScrollSpy);
 
   // Typewriter animation for hero tagline
-  (function initTypewriter(){
+  (function initTypewriter() {
     const el = document.getElementById('typewriter');
     if (!el) return;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -243,7 +243,7 @@
     const holdDelay = 1200;     // pause when a word completes
     const deleteDelay = 35;     // ms per character when deleting
 
-    function tick(){
+    function tick() {
       const word = phrases[i % phrases.length];
       if (!deleting) {
         j++;
