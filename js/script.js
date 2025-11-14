@@ -20,11 +20,15 @@
   }
 
   function initTheme() {
-    const saved = localStorage.getItem(key);
-    setTheme(saved || 'auto');
+    let saved = localStorage.getItem(key);
+    // Migrate old 'auto' or empty preference to dark to keep consistent dark aesthetic on mobile
+    if (!saved || saved === 'auto') {
+      saved = 'dark';
+      localStorage.setItem(key, 'dark');
+    }
+    setTheme(saved);
     prefersDark.addEventListener('change', () => {
-      const current = localStorage.getItem(key);
-      if (!current || current === 'auto') setTheme('auto');
+      // We no longer auto-switch; user would need a toggle in future.
     });
   }
 
