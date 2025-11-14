@@ -239,6 +239,7 @@ html[data-theme="light"] body {
 .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1rem; border: 1px solid var(--border); border-radius: .6rem; color: var(--text); text-decoration: none; background: transparent; box-shadow: none; }
 .btn:hover { border-color: color-mix(in oklab, var(--accent) 60%, var(--border)); }
 .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border: none; }
+.btn .icon { width: 16px; height: 16px; }
 .btn-icon { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: transparent; color: var(--text); border-radius: .55rem; padding: .45rem .6rem; cursor: pointer; line-height: 0; }
 .btn-icon:hover { background: var(--bg-elev); }
 .icon-link .icon { width: 18px; height: 18px; }
