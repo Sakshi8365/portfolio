@@ -302,8 +302,8 @@
 
       function animate() {
         // Ease with a gentle spring-like approach
-        x = lerp(x, tx, 0.12);
-        y = lerp(y, ty, 0.12);
+        x = lerp(x, tx, 0.10);
+        y = lerp(y, ty, 0.10);
         root.style.setProperty('--spot-x', x.toFixed(2) + '%');
         root.style.setProperty('--spot-y', y.toFixed(2) + '%');
 
@@ -326,11 +326,11 @@
 
         // Map speed to gloss intensity and size (subtle aura)
         // Lower peak for subtlety; larger base for softer falloff
-        // Lower brightness even more (base + scale), clamp to a gentler range
-        const alpha = clamp(0.05 + clamp(speed, 0, 1.2) * 0.08, 0.04, 0.14);
-        // Base size ~560x420, scale with speed 1.0..1.5
-        const scale = 1.0 + clamp(speed, 0, 1.2) * 0.5;
-        const baseX = 560, baseY = 420;
+        // Lower brightness and area: tiny glow range and smaller base size
+        const alpha = clamp(0.03 + clamp(speed, 0, 1.2) * 0.04, 0.03, 0.08);
+        // Smaller base size, narrower scale
+        const scale = 0.9 + clamp(speed, 0, 1.2) * 0.25;
+        const baseX = 440, baseY = 320;
 
         if (!reduce) setGloss(alpha, baseX * scale, baseY * scale);
 
@@ -350,7 +350,7 @@
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
           // Calm state when idle: lower alpha and slightly reduce size
-          if (!reduce) setGloss(0.06, baseX * 0.95, baseY * 0.95);
+          if (!reduce) setGloss(0.045, baseX * 0.9, baseY * 0.9);
         }, 1400);
 
         lastMoveTime = now;
@@ -365,7 +365,7 @@
       window.addEventListener('blur', () => {
         root.style.setProperty('--spot-x', '50%');
         root.style.setProperty('--spot-y', '50%');
-        if (!reduce) setGloss(0.08, 380, 250);
+        if (!reduce) setGloss(0.05, 320, 220);
       });
     }
   } catch (_) {
