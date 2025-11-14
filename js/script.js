@@ -408,4 +408,107 @@
       }
     }
   } catch (_) { /* ignore */ }
+
+  // Subtle starfield / nebula effect (canvas), respects reduced motion
+  (function initStarfield() {
+    try {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canvas = document.createElement('canvas');
+      canvas.className = 'starfield';
+      canvas.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d', { alpha: true });
+
+      let w = 0, h = 0, dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      let stars = [];
+      let animId = null;
+
+      function resize() {
+        w = window.innerWidth; h = window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        seed();
+        draw(0); // immediate draw
+      }
+
+      function rand(min, max) { return Math.random() * (max - min) + min; }
+
+      function seed() {
+        const area = w * h;
+        // Density tuned for subtlety; scale slightly with area
+        const count = Math.round(120 + Math.min(180, area / 18000));
+        stars = new Array(count).fill(0).map(() => {
+          // mix of white, purple, teal
+          const huePick = Math.random();
+          let color;
+          if (huePick < 0.65) color = { r: 235, g: 238, b: 255 }; // soft white
+          else if (huePick < 0.85) color = { r: 172, g: 146, b: 255 }; // purple tint
+          else color = { r: 140, g: 255, b: 230 }; // teal tint
+
+          return {
+            x: rand(0, w),
+            y: rand(0, h),
+            r: Math.random() < 0.85 ? rand(0.4, 1.2) : rand(1.3, 2.0),
+            base: rand(0.35, 0.8), // base alpha
+            tw: rand(0.6, 1.4),    // twinkle frequency
+            ph: rand(0, Math.PI * 2), // phase
+            vx: rand(-0.015, -0.005), // slow left drift
+            vy: rand(-0.004, 0.004),  // gentle vertical drift
+            color
+          };
+        });
+      }
+
+      let last = performance.now();
+      function draw(now) {
+        const dt = Math.min(50, now - last);
+        last = now;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // faint nebula wash to enhance cosmic mood (very subtle)
+        const g = ctx.createRadialGradient(
+          w * 0.65, h * 0.25, 0,
+          w * 0.65, h * 0.25, Math.max(w, h) * 0.8
+        );
+        g.addColorStop(0, 'rgba(124, 92, 255, 0.05)');
+        g.addColorStop(1, 'rgba(124, 92, 255, 0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, w, h);
+
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          if (!reduce) {
+            s.x += s.vx * dt;
+            s.y += s.vy * dt;
+            // wrap
+            if (s.x < -2) s.x = w + 2;
+            if (s.x > w + 2) s.x = -2;
+            if (s.y < -2) s.y = h + 2;
+            if (s.y > h + 2) s.y = -2;
+          }
+          const a = s.base * (reduce ? 1 : (0.65 + 0.35 * Math.sin(now * 0.001 * s.tw + s.ph)));
+          ctx.fillStyle = `rgba(${s.color.r}, ${s.color.g}, ${s.color.b}, ${a.toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        if (!reduce) animId = requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      if (!reduce) animId = requestAnimationFrame(draw);
+
+      // On visibility change, pause to save battery
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) { if (animId) cancelAnimationFrame(animId); animId = null; }
+        else if (!reduce && !animId) { last = performance.now(); animId = requestAnimationFrame(draw); }
+      });
+    } catch (_) { /* ignore starfield failures */ }
+  })();
 })();

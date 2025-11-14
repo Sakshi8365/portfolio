@@ -244,6 +244,16 @@ html[data-theme="light"] body {
 .btn-icon:hover { background: var(--bg-elev); }
 .icon-link .icon { width: 18px; height: 18px; }
 
+/* Starfield canvas behind content */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .28; /* default for dark */
+}
+html[data-theme="light"] .starfield { opacity: .16; }
+
 /* Sections */
 .section { padding: 3.5rem 0; scroll-margin-top: 76px; }
 .section-head { display: grid; gap: .5rem; margin-bottom: 1.25rem; }
