@@ -326,8 +326,8 @@
 
         // Map speed to gloss intensity and size (subtle aura)
         // Lower peak for subtlety; larger base for softer falloff
-        // Lower brightness overall (base + scale), clamp to a softer range
-        const alpha = clamp(0.08 + clamp(speed, 0, 1.2) * 0.10, 0.06, 0.20);
+        // Lower brightness even more (base + scale), clamp to a gentler range
+        const alpha = clamp(0.05 + clamp(speed, 0, 1.2) * 0.08, 0.04, 0.14);
         // Base size ~560x420, scale with speed 1.0..1.5
         const scale = 1.0 + clamp(speed, 0, 1.2) * 0.5;
         const baseX = 560, baseY = 420;
@@ -350,7 +350,7 @@
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
           // Calm state when idle: lower alpha and slightly reduce size
-          if (!reduce) setGloss(0.08, baseX * 0.95, baseY * 0.95);
+          if (!reduce) setGloss(0.06, baseX * 0.95, baseY * 0.95);
         }, 1400);
 
         lastMoveTime = now;
@@ -365,7 +365,7 @@
       window.addEventListener('blur', () => {
         root.style.setProperty('--spot-x', '50%');
         root.style.setProperty('--spot-y', '50%');
-        if (!reduce) setGloss(0.12, 380, 250);
+        if (!reduce) setGloss(0.08, 380, 250);
       });
     }
   } catch (_) {
